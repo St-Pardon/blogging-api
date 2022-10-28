@@ -1,0 +1,32 @@
+{
+  "name": "blogging-api",
+  "description": "Blogging API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/St-Pardon/blogging-api.git"
+  },
+  "keywords": [
+    "api",
+    "node",
+    "backend",
+    "express",
+    "mongoose"
+  ],
+  "author": "Onu Onyedikachi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/St-Pardon/blogging-api/issues"
+  },
+  "homepage": "https://github.com/St-Pardon/blogging-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.0"
+  }
+}
