@@ -6,42 +6,44 @@ const { userModel } = require("../models/user.model");
 const userRoute = Router();
 
 // get all users
-userRoute.get("/", (req, res) => {
-  try {
-    userModel.find().then((users) => {
-      res.status(200).send(users);
-    });
-  } catch (err) {
-    res.status(501).send(`An error occured -> ${err}`);
-  }
-});
+userRoute
+  .get("/", (req, res) => {
+    try {
+      userModel.find().then((users) => {
+        res.status(200).send(users);
+      });
+    } catch (err) {
+      res.status(501).send(`An error occured -> ${err}`);
+    }
+  })
 
-// get user by id
-userRoute.get("/:userid", (req, res) => {
-  try {
-    const { userid } = req.params;
-    userModel.findById(userid).then((user) => {
-      res.status(200).send(user);
-    });
-  } catch (err) {
-    res.status(404).send(`User not found -> ${err}`);
-  }
-});
+  // get user by id
 
-// update user infomation
-userRoute.put("/:userid", (req, res) => {
-  try {
-    const { userid } = req.params;
-    const update = req.body;
+  .get("/:userid", (req, res) => {
+    try {
+      const { userid } = req.params;
+      userModel.findById(userid).then((user) => {
+        res.status(200).send(user);
+      });
+    } catch (err) {
+      res.status(404).send(`User not found -> ${err}`);
+    }
+  })
 
-    update.updated_at = new Date();
+  // update user infomation
+  .put("/:userid", (req, res) => {
+    try {
+      const { userid } = req.params;
+      const update = req.body;
 
-    userModel
-      .findByIdAndUpdate(userid, update, { new: true })
-      .then((user) => res.status(200).send(user));
-  } catch (err) {
-    res.status(404).send(`User not found -> ${err}`);
-  }
-});
+      update.updated_at = new Date();
+
+      userModel
+        .findByIdAndUpdate(userid, update, { new: true })
+        .then((user) => res.status(200).send(user));
+    } catch (err) {
+      res.status(404).send(`User not found -> ${err}`);
+    }
+  });
 
 module.exports = { userRoute };
