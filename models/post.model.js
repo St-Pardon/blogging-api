@@ -6,9 +6,14 @@ const { ObjectId } = Schema;
 
 // init schema
 const PostSchema = new Schema({
+  id: ObjectId,
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
-  status: { type: String, enum: [draft, published] },
+  status: { 
+    type: String, 
+    default: "draft", 
+    enum: ["draft", "published"]
+  },
   title: { type: String, required: true, unique: true },
   description: String,
   author: String,
@@ -19,5 +24,5 @@ const PostSchema = new Schema({
   timestamp: { type: Date, default: Date.now },
 });
 
-const postModel = model('postModel', PostSchema);
+const postModel = model("postModel", PostSchema);
 module.exports = { postModel };
