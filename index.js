@@ -2,12 +2,11 @@ require("dotenv").config;
 const express = require("express");
 const { connectToMongoDB } = require("./config/db.config");
 const { userRoute } = require("./routes/user.route");
+const { postRoute } = require("./routes/post.route");
 const { signinRoute, signupRoute } = require("./routes/authentication.route");
 
 // initialize server
 const app = express();
-// connect To Mongo DB
-connectToMongoDB();
 
 // parse body data
 app.use(express.json());
@@ -21,8 +20,11 @@ app.get("/", (req, res) => {
 app
   .use("/users", userRoute)
   .use("/signup", signupRoute)
-  .use("/signin", signinRoute);
+  .use("/signin", signinRoute)
+  .use("/posts", postRoute);
 
+// connect To Mongo DB
+connectToMongoDB();
 // start server
 app.listen(process.env.PORT, () => {
   console.log(`Server running on Localhost:${process.env.PORT}`);
