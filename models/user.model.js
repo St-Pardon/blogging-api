@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { schema } = require("../../peza/models/user.models");
+const bcrypt = require("bcrypt");
 
 // import schema and ObjectId
 const { Schema, model } = mongoose;
@@ -22,6 +22,24 @@ const UserSchema = new Schema({
   },
   city: String,
 });
+
+
+// ensure password is encrypted
+UserSchema.pre("save", async function (next) {
+  const user = this;
+  const hash = await bcrypt.hash(this.password, 10);
+
+  this.password = hash;
+  next();
+});
+
+// password validation for log in 
+UserSchema.methods.isValidPassword = async function (password) {
+  const user = this;
+  const compare = await bcrypt.compare(password, user.password);
+
+  return compare;
+};
 
 const userModel = model("userModel", UserSchema);
 module.exports = { userModel };
