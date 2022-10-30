@@ -13,6 +13,7 @@ const app = express();
 app
   // body parsing middleware
   .use(express.urlencoded({ extended: false }))
+  .use(express.json())
 
   // routes handlers
   .use("/users", userRoute)
