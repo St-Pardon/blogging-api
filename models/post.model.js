@@ -9,7 +9,7 @@ const PostSchema = new Schema({
   id: ObjectId,
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
-  status: { 
+  state: { 
     type: String, 
     default: "draft", 
     enum: ["draft", "published"]
