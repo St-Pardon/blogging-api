@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const passport = require("passport");
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const signinRoute = Router();
 const signupRoute = Router();
@@ -30,7 +30,9 @@ signinRoute.post("/", async (req, res, next) => {
       req.login(user, { session: false }, async (error) => {
         if (error) return next(error);
         const body = { _id: user._id, email: user.email };
-        const token = jwt.sign({ user: body }, process.env.JWT_SECRET);
+        const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
+          expiresIn: "1h",
+        });
         return res.json({ token });
       });
     } catch (error) {

@@ -19,11 +19,11 @@ ___
     - [x] The owner of the blog should be able to delete the blog in draft or published state
 - [ ] The owner of the blog should be able to get a list of their blogs. 
 - [x] The endpoint should be paginated
-- [ ] It should be filterable by state
+- [X] It should be filterable by state
 - [x] Blogs created should have title, description, tags, author, timestamp, state, read_count, reading_time and body.
 - [x] The list of blogs endpoint that can be accessed by both logged in and not logged in users should be paginated, default it to 20 blogs per page. 
-- [ ] It should also be searchable by author, title and tags.
-- [ ] It should also be orderable by read_count, reading_time and timestamp
+- [X] It should also be searchable by author, title and tags.
+- [x] It should also be orderable by read_count, reading_time and timestamp
 - [ ] When a single blog is requested, the api should return the user information(the author) with the blog. The read_count of the blog too should be updated by 1
 - [x] Come up with any algorithm for calculating the reading_time of the blog.
 - [ ] Write tests for all endpoints
