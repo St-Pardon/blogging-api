@@ -9,15 +9,16 @@ const PostSchema = new Schema({
   id: ObjectId,
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
-  state: { 
-    type: String, 
-    default: "draft", 
-    enum: ["draft", "published"]
+  state: {
+    type: String,
+    default: "draft",
+    enum: ["draft", "published"],
   },
   title: { type: String, required: true, unique: true },
   description: String,
   author: String,
-  read_count: Number,
+  username: { type: String, unique: true, required: true },
+  read_count: { type: Number, default: 0 },
   reading_time: String,
   body: String,
   tags: Array,
