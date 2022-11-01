@@ -90,6 +90,8 @@ ___
 - Method - `GET`
 - Path - `/users`
 - Authorization - `Admin`
+- Authenticated - True
+- Authentication Method - Bearer Token(JWT)
 ```
 http://localhost:[PORT]/users
 ```
@@ -107,6 +109,8 @@ http://localhost:[PORT]/users/:userid
 - Method - `PUT`
 - Path - `/users/:userid/edit`
 - Accepts - `userid`
+- Authenticated - True
+- Authentication Method - Bearer Token(JWT)
 - Authorization - `Authenticated User`
 - Body: *see [Authentication route](#authentication-route) for editable fields*
 ```
@@ -118,6 +122,8 @@ http://localhost:[PORT]/users/:userid/edit
 - Path - `/users/:userid/delete`
 - Accepts - `userid`
 - Authorization - `Authenticated User`
+- Authenticated - True
+- Authentication Method - Bearer Token(JWT)
 ```
 http://localhost:[PORT]/users/:userid/delete
 ```
@@ -129,6 +135,8 @@ ___
 #### **Create Post**
 - Method - `POST`
 - Path - `/posts/new_post`
+- Authenticated - True
+- Authentication Method - Bearer Token(JWT)
 - Body:
     - Form Data
     - JSON
@@ -136,11 +144,6 @@ ___
     - Author: 
         - Field - `author`
         - Type: String
-    - Username:
-        - Field -`username`
-        - Type: String
-        - Unique: True
-        - Required: True
     - Title:
         - Field - `title`
         - Type: String
@@ -203,6 +206,15 @@ http://localhost:[PORT]/posts?title=effect%20of%20global%20warming
 http://localhost:[PORT]/posts?filter_by=draft
 http://localhost:[PORT]/posts?order_by=read_count&sort_by=DESC
 ```
+#### **Get All Post By User**
+- Method - `GET`
+- Path - `/users/myposts`
+- Authenticated - True
+- Authentication Method - Bearer Token(JWT)
+```
+http://localhost:[PORT]/posts/myposts
+```
+
 #### **Get Post By Id**
 - Method - `GET`
 - Path - `/users/:userid`
@@ -215,6 +227,8 @@ http://localhost:[PORT]/posts/:postid
 - Method - `PUT`
 - Path - `/users/:userid/edit`
 - Accepts - `userid`
+- Authenticated - True
+- Authentication Method - Bearer Token(JWT)
 - Authorization - `Authenticated User`
 - Body: *see [Create Post](#create-post) for editable fields*
 - Query Param:
@@ -228,6 +242,8 @@ http://localhost:[PORT]/posts/:postid/edit?published=true
 - Method - `DELETE`
 - Path - `/posts/:postid`
 - Accepts - `postid`
+- Authenticated - True
+- Authentication Method - Bearer Token(JWT)
 - Authorization - `Authenticated User`
 ```
 http://localhost:[PORT]/posts/:postid
