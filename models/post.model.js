@@ -17,7 +17,7 @@ const PostSchema = new Schema({
   title: { type: String, required: true, unique: true },
   description: String,
   author: String,
-  username: { type: String, unique: true, required: true },
+  userid: { type: String, required: true },
   read_count: { type: Number, default: 0 },
   reading_time: String,
   body: String,
