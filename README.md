@@ -27,7 +27,7 @@ Congratulations, you have successfully started your App, explore the [API Docs](
 ## Doucmentation
 > For complete list of the API Documetation, visit [API docs](./routes/README.md)
 - Hosts:
-    - Remote - `https://`
+    - Remote - `https://odd-plum-walrus-kilt.cyclic.app`
     - Local - `http://Localhost:[PORT]`
 - Home Route - `/`
 ```
@@ -49,5 +49,10 @@ http://<hostdomain>/posts
 ```
 http://<hostdomain>/posts/new_post
 ```
+
+## Deploy
+
+The App is Live At [Blogging API](`https://odd-plum-walrus-kilt.cyclic.app`) 🚀🚀🚀
+
 
 *Don't forget to leave a Star*
