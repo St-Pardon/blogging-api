@@ -17,7 +17,7 @@ $ cd blogging-api/
 $ npm install
 ```
 - Create a `.env` file and  Set up every environmental variable required
-    > see [.env]() for required variables 
+    > see [.env](./config/README.md) for required variables 
 - Start the App
 ```sh
 $ npm start
