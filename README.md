@@ -23,28 +23,31 @@ $ npm install
 $ npm start
 ```
 Congratulations, you have successfully started your App, explore the [API Docs](./routes/README.md) for full list of `routes`/`paths`
-## Doucmentation
-For complete list of the API Documetation, visit [API docs](./routes/README.md)
 
+## Doucmentation
+> For complete list of the API Documetation, visit [API docs](./routes/README.md)
+- Hosts:
+    - Remote - `https://`
+    - Local - `http://Localhost:[PORT]`
 - Home Route - `/`
 ```
-http://localhost:[PORT]/
+http://<hostdomain>/
 ```
 - [Sign Up](./routes/README.md#signup-route) - `/signup`
 ```
-http://localhost:[PORT]/signup
+http://<hostdomain>/signup
 ```
 - [Sign In](./routes/README.md/#signin-route) - `/signin`
 ```
-http://localhost:[PORT]/signin
+http://<hostdomain>/signin
 ```
 - [Blog posts](./routes/README.md#get-all-post) - `/posts`
 ```
-http://localhost:[PORT]/posts
+http://<hostdomain>/posts
 ```
 - [Create Blog posts](./routes/README.md#create-post) - `/posts/new_post`
 ```
-http://localhost:[PORT]/posts/new_post
+http://<hostdomain>/posts/new_post
 ```
 
 *Don't forget to leave a Star*

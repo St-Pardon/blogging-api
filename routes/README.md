@@ -21,9 +21,12 @@ ___
         - [Delete Post](#delete-post)
 ___
 ## Base Route/URI
+### Hosts 
+- Remote - `https://`
+- Local - `http://Localhost:[PORT]`
 ### landing page
 ```
-http://localhost:[PORT]/
+http://<hostdomain>/
 ```
 
 ## Sub Routes
@@ -68,7 +71,7 @@ The Authentication Route includes `signin` and `signup` routes. The `signup` to 
         - Field: `city` 
         - Type: String
 ```
-http://localhost:[PORT]/signup
+http://<hostdomain>/signup
 ```
 #### **Signin Route**
 - Method - `POST`
@@ -81,7 +84,7 @@ http://localhost:[PORT]/signup
         - Field: `password`
         - Required: True
 ```
-http://localhost:[PORT]/signin
+http://<hostdomain>/signin
 ```
 ___
 ### Users Routes
@@ -93,7 +96,7 @@ ___
 - Authenticated - True
 - Authentication Method - Bearer Token(JWT)
 ```
-http://localhost:[PORT]/users
+http://<hostdomain>/users
 ```
 
 #### **Get user by ID/Username**
@@ -102,7 +105,7 @@ http://localhost:[PORT]/users
 - Accepts - `userid` or `username`
 - Authorization - `Admin` and `User`
 ```
-http://localhost:[PORT]/users/:userid
+http://<hostdomain>/users/:userid
 ```
 
 #### **Update user info**
@@ -114,7 +117,7 @@ http://localhost:[PORT]/users/:userid
 - Authorization - `Authenticated User`
 - Body: *see [Authentication route](#authentication-route) for editable fields*
 ```
-http://localhost:[PORT]/users/:userid/edit
+http://<hostdomain>/users/:userid/edit
 ```
 
 #### **Delete user**
@@ -125,7 +128,7 @@ http://localhost:[PORT]/users/:userid/edit
 - Authenticated - True
 - Authentication Method - Bearer Token(JWT)
 ```
-http://localhost:[PORT]/users/:userid/delete
+http://<hostdomain>/users/:userid/delete
 ```
 
 ___
@@ -141,7 +144,17 @@ ___
     - Form Data
     - JSON
 - Accepts: 
-    - Author: 
+    |Feild | Data Type | Required | Unique | Default | Enum |
+    |:-------- | :--------: | :--------: | :--------: | :--------: | :--------: |
+    | `author` | String | True | False | null | null |
+    | `title` | String | True | True |null | null |
+    | `description` | String | False | False |null | null |
+    |`state`|String|False|False|draft|draft, published|
+    | `body` | String | False | False |null | null |
+    | `tags` | Array | False | False |null | null |
+    | `reading_time` | String | False | False |null | null |
+
+    <!-- - Author: 
         - Field - `author`
         - Type: String
     - Title:
@@ -163,15 +176,11 @@ ___
     - Tags: 
         - Field - `tags`
         - Type: Array
-    - Read Count:
-        - Field - `read_count`
-        - Type: Number 
-        - Default: 0
     - Reading Time:
         - Field - `reading_time`
-        - Type: String
+        - Type: String -->
 ```
-http://localhost:[PORT]/posts/new_post
+http://<hostdomain>/posts/new_post
 ```
 #### **Get All Post**
 - Method - `GET`
@@ -200,11 +209,11 @@ http://localhost:[PORT]/posts/new_post
         - Default: `ASC`
 
 ```
-http://localhost:[PORT]/posts/
-http://localhost:[PORT]/posts?author=John%20Doe&tags=tech%20node
-http://localhost:[PORT]/posts?title=effect%20of%20global%20warming
-http://localhost:[PORT]/posts?filter_by=draft
-http://localhost:[PORT]/posts?order_by=read_count&sort_by=DESC
+http://<hostdomain>/posts/
+http://<hostdomain>/posts?author=John%20Doe&tags=tech%20node
+http://<hostdomain>/posts?title=effect%20of%20global%20warming
+http://<hostdomain>/posts?filter_by=draft
+http://<hostdomain>/posts?order_by=read_count&sort_by=DESC
 ```
 #### **Get All Post By User**
 - Method - `GET`
@@ -212,7 +221,7 @@ http://localhost:[PORT]/posts?order_by=read_count&sort_by=DESC
 - Authenticated - True
 - Authentication Method - Bearer Token(JWT)
 ```
-http://localhost:[PORT]/posts/myposts
+http://<hostdomain>/posts/myposts
 ```
 
 #### **Get Post By Id**
@@ -220,7 +229,7 @@ http://localhost:[PORT]/posts/myposts
 - Path - `/users/:userid`
 - Accepts - `userid`
 ```
-http://localhost:[PORT]/posts/:postid
+http://<hostdomain>/posts/:postid
 ```
 
 #### **Update/Publish Post**
@@ -235,8 +244,8 @@ http://localhost:[PORT]/posts/:postid
     - Field - `published`
     - Type: Boolean
 ```
-http://localhost:[PORT]/posts/:postid/edit
-http://localhost:[PORT]/posts/:postid/edit?published=true
+http://<hostdomain>/posts/:postid/edit
+http://<hostdomain>/posts/:postid/edit?published=true
 ```
 #### **Delete Post**
 - Method - `DELETE`
@@ -246,7 +255,6 @@ http://localhost:[PORT]/posts/:postid/edit?published=true
 - Authentication Method - Bearer Token(JWT)
 - Authorization - `Authenticated User`
 ```
-http://localhost:[PORT]/posts/:postid
+http://<hostdomain>/posts/:postid
 ```
-
 
