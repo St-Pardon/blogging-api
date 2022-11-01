@@ -43,7 +43,7 @@ module.exports.getAll = async (req, res) => {
         const data = posts.map((item) => {
           return { title: item.title, author: item.author, post: item };
         });
-        res.status(200).send(data);
+        res.status(200).json(data);
       });
   } catch (err) {
     res.status(404).send({ msg: "No post was return", err });
@@ -58,7 +58,7 @@ module.exports.getById = async (req, res) => {
     blogPost.read_count = (await blogPost.read_count) + 1;
     const userInfo = await userModel.findOne({ userid: blogPost.userid }); //gets userInfo
     await blogPost.save().then((post) => {
-      res.status(200).send({
+      res.status(200).json({
         post,
         firstname: userInfo.first_name,
         lastname: userInfo.last_name,
@@ -74,7 +74,7 @@ module.exports.getById = async (req, res) => {
 module.exports.userPosts = (req, res) => {
   try {
     const userid = req.user._id;
-    postModel.find({ userid }).then((all) => res.status(200).send(all));
+    postModel.find({ userid }).then((all) => res.status(200).json(all));
   } catch (err) {
     res.status(404).send({ msg: "Posts not found", err });
   }
@@ -85,7 +85,7 @@ module.exports.new_post = (req, res) => {
     const newPost = req.body;
     newPost.userid = req.user._id; // set username authomatically from authenticated user
     postModel.create(newPost).then((post) => {
-      res.status(200).send(post);
+      res.status(200).json(post);
     });
   } catch (error) {
     res.status(404).send({ msg: "Cannot create post", error });
@@ -108,7 +108,7 @@ module.exports.editPost = (req, res) => {
     // update time
     update.updated_at = new Date();
     postModel.findByIdAndUpdate(postid, update, { new: true }).then((post) => {
-      res.status(200).send(post);
+      res.status(200).json(post);
     });
   } catch (error) {
     res.status(404).send({ msg: "Posts not found", error });

@@ -3,7 +3,7 @@ const { userModel } = require("../models/user.model");
 module.exports.getAll = (req, res) => {
   try {
     userModel.find().then((users) => {
-      res.status(200).send(users);
+      res.status(200).json(users);
     });
   } catch (err) {
     res.status(501).send(`An error occured -> ${err}`);
@@ -14,7 +14,7 @@ module.exports.getById = (req, res) => {
   try {
     const { userid } = req.params;
     userModel.findById(userid).then((user) => {
-      res.status(200).send(user);
+      res.status(200).json(user);
     });
   } catch (err) {
     res.status(404).send(`User not found -> ${err}`);
@@ -30,7 +30,7 @@ module.exports.updateUser = (req, res) => {
 
     userModel
       .findByIdAndUpdate(userid, update, { new: true })
-      .then((user) => res.status(200).send(user));
+      .then((user) => res.status(200).json(user));
   } catch (err) {
     res.status(404).send(`User not found -> ${err}`);
   }

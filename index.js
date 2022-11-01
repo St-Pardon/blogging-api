@@ -27,7 +27,7 @@ app
   // welcome page route
   .get("/", (req, res) => {
     res.end(
-      "Welcome to your blog, please make req to the /login route to login or to the /blog to get blog article. Thank you!"
+      "Welcome to your blog, please make req to the /login route to login or to the /post to get blog article. Thank you!"
     );
   });
 

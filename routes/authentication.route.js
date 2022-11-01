@@ -33,7 +33,7 @@ signinRoute.post("/", async (req, res, next) => {
         const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
-        return res.json({ token });
+        return res.json({ message: "Signin successful", token });
       });
     } catch (error) {
       return next(error);
