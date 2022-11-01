@@ -1,49 +1,22 @@
 const { Router } = require("express");
-const { userModel } = require("../models/user.model");
-// const {} = require("../middleware/");
+const {
+  getAll,
+  getById,
+  updateUser,
+} = require("../controllers/users.controller");
 
 // intialize router
 const userRoute = Router();
 
 // get all users
 userRoute
-  .get("/", (req, res) => {
-    try {
-      userModel.find().then((users) => {
-        res.status(200).send(users);
-      });
-    } catch (err) {
-      res.status(501).send(`An error occured -> ${err}`);
-    }
-  })
+  .get("/", getAll)
 
   // get user by id
 
-  .get("/:userid", (req, res) => {
-    try {
-      const { userid } = req.params;
-      userModel.findById(userid).then((user) => {
-        res.status(200).send(user);
-      });
-    } catch (err) {
-      res.status(404).send(`User not found -> ${err}`);
-    }
-  })
+  .get("/:userid", getById)
 
   // update user infomation
-  .put("/:userid/edit", (req, res) => {
-    try {
-      const { userid } = req.params;
-      const update = req.body;
-
-      update.updated_at = new Date();
-
-      userModel
-        .findByIdAndUpdate(userid, update, { new: true })
-        .then((user) => res.status(200).send(user));
-    } catch (err) {
-      res.status(404).send(`User not found -> ${err}`);
-    }
-  });
+  .put("/:userid/edit", updateUser);
 
 module.exports = { userRoute };
