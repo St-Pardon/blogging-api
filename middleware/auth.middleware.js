@@ -12,7 +12,7 @@ passport
     new JWTstrategy(
       {
         secretOrKey: process.env.JWT_SECRET,
-        jwtFromRequest: ExtractJWT.fromUrlQueryParameter("jwt_key"),
+        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         ignoreExpiration: false,
         jsonWebTokenOptions: {
           maxAge: "1h",
