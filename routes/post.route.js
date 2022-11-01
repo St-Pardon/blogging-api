@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const passport = require("passport");
 const { postModel } = require("../models/post.model");
+const { userModel } = require("../models/user.model");
 
 const postRoute = Router();
 
@@ -30,7 +31,12 @@ postRoute
       } = req.query;
 
       postModel
-        .find({ author, title, 'state': filter_by, "tags": { $in: tags.split(" ") }})
+        .find({
+          author,
+          title,
+          state: filter_by,
+          tags: { $in: tags.split(" ") },
+        })
         .limit(parseInt(count))
         .skip(page_no * count)
         .sort({ [order_by]: sort_by.toLowerCase() })
@@ -53,13 +59,34 @@ postRoute
       // update read_count
       const blogPost = await postModel.findById(postid);
       blogPost.read_count = (await blogPost.read_count) + 1;
+      const userInfo = await userModel.findOne({ userid: blogPost.userid }); //gets userInfo
       await blogPost.save().then((post) => {
-        res.status(200).send(post);
+        res.status(200).send({
+          post,
+          firstname: userInfo.first_name,
+          lastname: userInfo.last_name,
+          email: userInfo.email,
+          city: userInfo.city,
+        });
       });
     } catch (err) {
       res.status(404).send({ msg: "Posts not found", err });
     }
   })
+
+  // get all post by the authenticated user
+  .get(
+    "/myposts",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+      try {
+        const userid = req.user._id;
+        postModel.find({ userid }).then((all) => res.status(200).send(all));
+      } catch (err) {
+        res.status(404).send({ msg: "Posts not found", err });
+      }
+    }
+  )
 
   // create new post
   .post(
@@ -68,6 +95,7 @@ postRoute
     (req, res) => {
       try {
         const newPost = req.body;
+        newPost.userid = req.user._id; // set username authomatically from authenticated user
         postModel.create(newPost).then((post) => {
           res.status(200).send(post);
         });

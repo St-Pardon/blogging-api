@@ -31,7 +31,7 @@ userRoute
   })
 
   // update user infomation
-  .put("/:userid", (req, res) => {
+  .put("/:userid/edit", (req, res) => {
     try {
       const { userid } = req.params;
       const update = req.body;
