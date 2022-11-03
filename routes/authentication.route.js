@@ -10,7 +10,7 @@ signupRoute.post(
   "/",
   passport.authenticate("signup", { session: false }),
   async (req, res, next) => {
-    res.status(200).json({
+    res.status(201).json({
       message: "Signup successful",
       user: req.user,
     });
@@ -33,7 +33,7 @@ signinRoute.post("/", async (req, res, next) => {
         const token = jwt.sign({ user: body }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
-        return res.json({ message: "Signin successful", token });
+        return res.status(200).json({ message: "Signin successful", token });
       });
     } catch (error) {
       return next(error);

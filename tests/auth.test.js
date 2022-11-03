@@ -1,9 +1,9 @@
 const { userModel } = require("../models/user.model");
-const { connect } = require("./db.test");
-const app = require("../index");
+const { connect } = require("./db");
+const app = require("../app");
 const request = require("supertest");
 
-describe("Authenticate: Signup", () => {
+describe("Authenticate: Signup and Signin", () => {
   let dbconnect;
 
   beforeAll(async () => {
@@ -25,8 +25,8 @@ describe("Authenticate: Signup", () => {
       .send({
         username: "johndoe",
         password: "johndoe1234",
-        firstName: "john",
-        lastName: "doe",
+        first_name: "john",
+        last_name: "doe",
         email: "johndoe@gmail.com",
       });
 
@@ -34,25 +34,29 @@ describe("Authenticate: Signup", () => {
     expect(response.body).toHaveProperty("message");
     expect(response.body).toHaveProperty("user");
     expect(response.body.user).toHaveProperty("username", "johndoe");
-    expect(response.body.user).toHaveProperty("firstname", "john");
-    expect(response.body.user).toHaveProperty("lastname", "doe");
+    expect(response.body.user).toHaveProperty("first_name", "john");
+    expect(response.body.user).toHaveProperty("last_name", "doe");
     expect(response.body.user).toHaveProperty("email", "johndoe@gmail.com");
   });
-  it("should login a user", async () => {
-    const user = await userModel.create({
-      username: "johndoe",
+  it("should signup and signin a user", async () => {
+    await userModel.create({
+      username: "johndoe1",
       password: "johndoe1234",
-      firstName: "john",
-      lastName: "doe",
-      email: "johndoe@gmail.com",
+      first_name: "john",
+      last_name: "doe",
+      email: "johndoe1@gmail.com",
     });
 
     const response = await request(app)
       .post("/signin")
       .set("content-type", "application/json")
-      .send(user);
+      .send({
+        email: "johndoe1@gmail.com",
+        password: "johndoe1234"
+      });
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("token");
   });
 });
+

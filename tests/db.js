@@ -36,7 +36,7 @@ class ConnectDB {
   }
 }
 
-module.exports.connect = async () => {
+exports.connect = async () => {
   const dbconnect = new ConnectDB();
   await dbconnect.connect();
   return dbconnect;

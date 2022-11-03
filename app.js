@@ -25,9 +25,16 @@ app
 
   // welcome page route
   .get("/", (req, res) => {
-    res.end(
-      "Welcome to your blog, please make req to the /signin route to login or /signup if you don't have an account. explore the /posts to get blog article. Thank you!"
-    );
+    res
+      .status(200)
+      .end(
+        "Welcome to your blog, please make req to the /signin route to login or /signup if you don't have an account. explore the /posts to get blog article. Thank you!"
+      );
+  })
+
+  // 404 error page
+  .get("*", (req, res) => {
+    res.status(404).end("404 not found, check route and try again");
   });
 
 module.exports = app;
