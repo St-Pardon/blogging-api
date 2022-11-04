@@ -1,6 +1,13 @@
 const { postModel } = require("../models/post.model");
 const { userModel } = require("../models/user.model");
 
+const readTime = (body) => {
+  const numOfWord = body.split(" ").length;
+  if (numOfWord < 200) return 2;
+  const duration = numOfWords / 200;
+  return Math.round(duration) === 0 ? 1 : Math.round(duration);
+};
+
 /**
  * @query
  * author: Regex for * (default)
@@ -84,11 +91,12 @@ module.exports.new_post = (req, res) => {
   try {
     const newPost = req.body;
     newPost.userid = req.user._id; // set username authomatically from authenticated user
+    newPost.reading_time = readTime(req.body.body) + " min"; // set reading time
     postModel.create(newPost).then((post) => {
-      res.status(200).json(post);
+      res.status(201).json(post);
     });
   } catch (error) {
-    res.status(404).send({ msg: "Cannot create post", error });
+    res.status(500).send({ msg: "Cannot create post", error });
   }
 };
 
@@ -115,7 +123,6 @@ module.exports.editPost = (req, res) => {
   }
 };
 
-
 module.exports.deletePost = (req, res) => {
   try {
     const { postid } = req.params;
@@ -124,6 +131,6 @@ module.exports.deletePost = (req, res) => {
       res.status(200).send("Deleted successfully");
     });
   } catch (error) {
-    res.status(404).send({ msg: "Unable to delete post", error });
+    res.status(500).send({ msg: "Unable to delete post", error });
   }
 };
