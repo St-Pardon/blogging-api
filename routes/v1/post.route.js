@@ -7,7 +7,7 @@ const {
   new_post,
   editPost,
   deletePost,
-} = require("../controllers/posts.controllers");
+} = require("../../controllers/posts.controllers");
 
 const postRoute = Router();
 

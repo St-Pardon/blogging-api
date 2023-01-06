@@ -22,8 +22,8 @@ ___
 ___
 ## Base Route/URI
 ### Hosts 
-- Remote - `https://odd-plum-walrus-kilt.cyclic.app`
-- Local - `http://Localhost:[PORT]`
+- Remote - `https://odd-plum-walrus-kilt.cyclic.app/api/v2`
+- Local - `http://Localhost:[PORT]/api/v2`
 ### landing page
 ```
 http://<hostdomain>/
