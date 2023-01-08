@@ -52,7 +52,7 @@ http://<hostdomain>/posts/new_post
 
 ## Deploy
 
-The App is Live At [Blogging API](`https://odd-plum-walrus-kilt.cyclic.app`) 🚀🚀🚀
+The App is Live At [Blogging API](https://odd-plum-walrus-kilt.cyclic.app) 🚀🚀🚀
 
 
 *Don't forget to leave a Star*
