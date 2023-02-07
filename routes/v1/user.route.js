@@ -3,7 +3,7 @@ const {
   getAll,
   getById,
   updateUser,
-} = require("../controllers/users.controller");
+} = require("../../controllers/users.controller");
 
 // intialize router
 const userRoute = Router();
