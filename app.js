@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const { userRoute } = require("./routes/user.route");
+const { userRoute } = require("./routes/v1/user.route");
 const { postRoute } = require("./routes/v1/post.route");
 const { signinRoute, signupRoute } = require("./routes/v1/authentication.route");
 const { errHandler } = require("./middleware/errhandle.middleware");
