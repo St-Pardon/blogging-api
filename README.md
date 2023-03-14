@@ -25,7 +25,7 @@ $ npm start
 Congratulations, you have successfully started your App, explore the [API Docs](./routes/README.md) for full list of `routes`/`paths`
 
 ## Doucmentation
-> For complete list of the API Documetation, visit [API docs](./routes/README.md)
+> For complete list of the API Documetation, visit [API docs](./routes/v1/README.md)
 - Hosts:
     - Remote - `https://odd-plum-walrus-kilt.cyclic.app`
     - Local - `http://Localhost:[PORT]`
